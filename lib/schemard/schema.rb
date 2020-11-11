@@ -1,4 +1,11 @@
 require_relative 'utils/struct_assigner'
+require 'json'
+
+Struct.class_eval {
+define_method :to_json do
+to_h.to_json
+end
+}
 
 module SchemaRD
   class Schema
@@ -19,6 +26,9 @@ module SchemaRD
     end
     def add_relation(relation)
       @relations << relation
+    end
+    def all_tables
+      @tables
     end
   end
 
